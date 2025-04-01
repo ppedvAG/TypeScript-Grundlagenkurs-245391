@@ -41,7 +41,7 @@ export default class RemoteService<T extends { id: string }> {
 
     async deleteItem(id: string): Promise<void> {
         try {
-            const response = await fetch('http://localhost:3000/item/' + id, {
+            const response = await fetch('http://localhost:3000/items/' + id, {
                 method: 'DELETE',
             });
 
