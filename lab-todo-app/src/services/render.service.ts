@@ -2,6 +2,8 @@ import { InputType, Task, inputTypes } from '../types/task.types';
 import TaskItem from './task.model';
 import StorageService from './storage.service';
 
+const storage = new StorageService<Task>();
+
 export function createElement<T>(parent: HTMLElement, type: InputType, placeholder?: string): HTMLInputElement;
 export function createElement<K extends keyof HTMLElementTagNameMap>(
     parent: HTMLElement,
@@ -69,7 +71,6 @@ export function drawForm(form: HTMLFormElement, list: HTMLUListElement) {
         submitButton.disabled = !taskInput.value;
     });
 
-    const storage = new StorageService<Task>();
     storage.loadItems().map(TaskItem.fromTask).forEach(drawTaskItem);
 
     function addTask(taskInput: string, dueInput: Date | null, prioNumber: number, labelInput: string) {
